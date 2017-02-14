@@ -76,7 +76,7 @@ public boolean setQueen(int row, int col){
     if(row - move >= 0){
       board[row-move][col+move]--;
     }
-    if(row + move < board[row].length){
+    if(row + move < board.length){
       board[row+move][col+move]--;
     }
    }
@@ -91,7 +91,7 @@ public boolean byeQueen(int row, int col){
     if(row - move >= 0){
       board[row-move][col+move]++;
     }
-    if(row + move < board[row].length){
+    if(row + move < board.length){
       board[row+move][col+move]++;
       }
     }
