@@ -6,10 +6,8 @@ public class QueenBoard{
   public QueenBoard(int size){
     board = new int[size][size];
     fillWith0s();
-    solutionCount = -1;
+    solutionCount = 0;
   }
-
-
 
   public void fillWith0s(){
     for(int x = 0; x < board.length; x++){
@@ -19,7 +17,7 @@ public class QueenBoard{
      }
   }
 
-   public boolean solve(){
+  public boolean solve(){
      return solveH(0);
    }
 
@@ -28,9 +26,7 @@ public class QueenBoard{
      for(int i = 0; i < board.length; i++){
        if(setQueen(i,col)){
          setQueen(i, col);
-         if(solveH(col + 1)){
-           return true;
-         }
+         if(solveH(col + 1)) return true;
          byeQueen(i, col);
      }
    }
@@ -38,17 +34,33 @@ public class QueenBoard{
 }
 
 
-   public int getSolutionCount(){
-     return -1;
+  public int getSolutionCount(){
+     return solutionCount;
+   }
+   public void countSolutions(){
+    if(!(solutionCount >= 2 && solutionCount <=3)) countH(0);
    }
 
+   public void countH(int j){
+     if(j >= board.length){
+       solutionCount++;
+       return;
+     }
+      for(int row = 0; row < board.length; row++){
+        if(board[row][j] == 0){
+          setQueen(row, j);
+          countH(j + 1);
+          byeQueen(row, j);
+        }
+      }
+   }
 
-   public String toString(){
-     String visualBoard = "";
-     for(int x = 0; x < board.length; x++){
-	    for(int y = 0; y < board.length; y++){
-        if(board[x][y] == 1) visualBoard += "Q ";
-        else{ visualBoard += "_ ";
+public String toString(){
+    String visualBoard = "";
+    for(int x = 0; x < board.length; x++){
+	   for(int y = 0; y < board.length; y++){
+      if(board[x][y] == 1) visualBoard += "Q ";
+       else{ visualBoard += "_ ";
         }
       }
      visualBoard += "\n";
@@ -56,13 +68,9 @@ public class QueenBoard{
     return visualBoard;
 }
 
-
-
 public boolean setQueen(int row, int col){
   if(board[row][col] != 0) return false;
-
   board[row][col] = 1;
-  int move = 1;
   for(int move = 1; move + col < board.length; move++){
     board[row][col+move]--;
     if(row - move >= 0){
@@ -75,12 +83,9 @@ public boolean setQueen(int row, int col){
    return true;
 }
 
-
 public boolean byeQueen(int row, int col){
   if(board[row][col] != 1) return false;
-
   board[row][col] = 0;
-  int move = 1;
   for(int move = 1; move + col < board.length; move ++){
     board[row][col+move]++;
     if(row - move >= 0){
@@ -92,14 +97,4 @@ public boolean byeQueen(int row, int col){
     }
     return true;
 }
-
-
-   public static void main(String[] args) {
-     QueenBoard tester = new QueenBoard(8);
-     System.out.println(tester.solve());
-     //System.out.println(tester.setQueen(3,4));
-     //System.out.println(tester.byeQueen(0,0));
-     System.out.println(tester.toString());
-
-   }
 }
