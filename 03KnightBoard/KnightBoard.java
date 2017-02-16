@@ -31,9 +31,23 @@ public class KnightBoard{
 		return visualBoard;
 	}
 	
+	public boolean solveH(int row, int col, int level){
+		if((row < board.length && row > -1)
+		 &&(col < board.length && col > -1){
+			return false;
+		}
+		if(board[row + 2][col + 1] == 0)
+		
+		if(board[row + 2][col - 1])
+		if(board[row - 2][col + 1])
+		if(board[row - 2][col - 1])
+		if(board[row + 1][col + 2])
+		if(board[row - 1][col + 2])
+	}
 
+	public void solve(){
 
-
+	}
 	public static void main(String[] arghhhh){
 		KnightBoard cyclone = new KnightBoard(3, 2, 8);
 		System.out.println(cyclone.toString());
