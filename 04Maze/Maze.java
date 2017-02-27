@@ -7,14 +7,16 @@ public class Maze{
    private boolean animate;
 
 	public Maze(String filename){
-	/*	String body = "";
+		String body = "";
 		File infile = new File(filename);
 		Scanner inf = new Scanner(infile);
 		int line = 1;
 		while(inf.hasNextLine()){
 		String line = inf.nextLine()
+		body += line;
+		line += 1
 		}
-	*/	
+		
 	
 	}
 	
