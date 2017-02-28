@@ -78,7 +78,7 @@ public class KnightBoard{
 		}
 	}
 	public static void main(String[] arghhhh){
-		KnightBoard cyclone = new KnightBoard(6, 6);
+		KnightBoard cyclone = new KnightBoard(6, 4);
 		cyclone.solve();
 		System.out.println(cyclone.toString());
 	}
