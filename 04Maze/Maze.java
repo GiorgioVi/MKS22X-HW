@@ -7,16 +7,17 @@ public class Maze{
    private boolean animate;
 
 	public Maze(String filename){ 
-		throws FileNotFoundException{
+		try{
 		String body = "";
 		File infile = new File(filename);
 		Scanner inf = new Scanner(infile);
-		int lineNum = 1;
+		int lineNum = 0;
 		while(inf.hasNextLine()){
-			String line = inf.nextLine();
-			body += line;
 			lineNum += 1;
-		}
+			String line = inf.nextLine();
+			//System.out.println(line);
+			body += line;
+		}System.out.println(lineNum);
 		maze = new char[lineNum][body.length() / lineNum];
 		int counter = 0;
 		for(int i = 0; i < maze.length; i++){
@@ -25,8 +26,10 @@ public class Maze{
 				counter++;
 			}
 		}
+		} catch(FileNotFoundException e){
+		 }
 	}
-}
+
 	
 	public String toString(){
 	String visualBoard = "";
@@ -40,7 +43,7 @@ public class Maze{
 	}
 	
 	public static void main(String[] arghhhhh){
-		Maze cyclone = new Maze(data1.dat);
+		Maze cyclone = new Maze("data3.dat");
 		System.out.println(cyclone.toString());	
 	}
 }	
