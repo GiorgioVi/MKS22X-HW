@@ -15,7 +15,6 @@ public class Maze{
 		while(inf.hasNextLine()){
 			lineNum += 1;
 			String line = inf.nextLine();
-			//System.out.println(line);
 			body += line;
 		}System.out.println(lineNum);
 		maze = new char[lineNum][body.length() / lineNum];
@@ -27,6 +26,7 @@ public class Maze{
 			}
 		}
 		} catch(FileNotFoundException e){
+		  System.out.println("File Not Found");
 		 }
 	}
 
