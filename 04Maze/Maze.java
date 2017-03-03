@@ -41,9 +41,24 @@ public class Maze{
 	}
 	return visualBoard;
 	}
+
+	public boolean solve(){
+		int startingSRow = 0, startingSCol = 0;
+		for(int i = 0; i < maze.length ; i++){
+			for(int j = 0; j < maze[0].length; j++){
+			 if(maze[i][j] = 'S'){
+				startingSRow = i;
+				startingSCol = j;
+			}
+		}
+		}
+	return solveOne(StartingSRow, StartingScol);
+	}
+
+		
 	
 	public static void main(String[] arghhhhh){
-		Maze cyclone = new Maze("data3.dat");
+		Maze cyclone = new Maze("data1.dat");
 		System.out.println(cyclone.toString());	
 	}
 }	
