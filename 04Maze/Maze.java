@@ -15,13 +15,13 @@ public class Maze{
 		while(inf.hasNextLine()){
 			lineNum += 1;
 			String line = inf.nextLine();
-			//System.out.println(line);
 			body += line;
 		}System.out.println(lineNum);
 		maze = new char[lineNum][body.length() / lineNum];
 		int counter = 0;
 		for(int i = 0; i < maze.length; i++){
-			for(int j = 0; j < maze[0].length; j++){
+			
+            for(int j = 0; j < maze[0].length; j++){
 				maze[i][j] = body.charAt(counter);
 				counter++;
 			}
