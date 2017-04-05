@@ -1,4 +1,5 @@
-public class MyLinkedList{
+import java.util.*;
+public class MyLinkedList /*implements Iterator<Integer>*/ {
 
 
     private class LNode{
@@ -71,8 +72,19 @@ public class MyLinkedList{
    }
 
   public int get(int index){
-	/*complete this*/
-	return 6;
+	if(index < 0 || index >= size()){
+	 throw new IndexOutOfBoundsException("Index Out Of Bounds");
+	}
+  	LNode current = head;
+	int indexCounter = 0;
+	while(current.next != null){
+		if(indexCounter == index){
+			break;
+		}
+	indexCounter++;
+	current = current.next;
+	}
+	return current.value;
 	}
 
   public int set(int index, int value){
@@ -95,9 +107,14 @@ public class MyLinkedList{
 	}
 
    	public static void main(String[] argggg){
-      MyLinkedList pizza = new MyLinkedList();
-      pizza.add(1);
-      System.out.println(pizza.toString());
+        MyLinkedList pizza = new MyLinkedList();
+        pizza.add(1);
+        pizza.add(2);
+        pizza.add(8);
+        pizza.add(13);
+	System.out.println(pizza.size());	
+        System.out.println(pizza.toString());
+	System.out.println(pizza.get(2));
 
 
 	}
