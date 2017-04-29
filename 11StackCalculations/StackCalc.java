@@ -19,7 +19,7 @@ public static double eval(String s){
   }
 
 
-  private static boolean isOp(String s){
+private static boolean isOp(String s){
     return
      s.equals("+") ||
      s.equals("-") ||
