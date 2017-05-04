@@ -3,19 +3,22 @@ import java.util.ArrayList;
 public class MyHeap{
    private int size;
    private ArrayList<String> data;
+   private boolean max;
  
 	public MyHeap(){
 	}
 
 	public MyHeap(boolean beta){
+		size = data.size();
 		if(beta){
-
+			max = true;
 		}else{
-
+			max = false;
 		}
 	}
 
 	public void add(String s){
+		if(data.zi
 	}
 	
 	public String remove(){
@@ -23,7 +26,11 @@ public class MyHeap{
 	}
 
 	public String peek(){
-		return "";
+	if(size == 1){
+		return null;
+	}else{
+		return data.get(1);
+	}
 	}
 
 	private void pushUp(){
