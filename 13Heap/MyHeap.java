@@ -18,7 +18,7 @@ public class MyHeap{
 	}
 
 	public void add(String s){
-		if(data.zi
+		if(size != 1) data.add(
 	}
 	
 	public String remove(){
