@@ -1,16 +1,16 @@
 import java.util.*;
 import java.util.NoSuchElementException;
 
-public class MyHeap{
-   private String[] data = new String[10];
+public class MyHeapInt{
+   private int[] data = new int[10];
    private int max = 1;
    private int size;
 
-	public MyHeap(){
+	public MyHeapInt(){
   		size = 0;
 	}
 
-	public MyHeap(boolean beta){
+	public MyHeapInt(boolean beta){
  		size = 0;
 		if(beta){
 			max = 1;
@@ -20,7 +20,7 @@ public class MyHeap{
 	}
 
 	private void getBig(){
-		String[]big = new String[size*2];
+		int[]big = new int[size*2];
 		for (int i =0;i <= size;i++ ) {
         		big[i] = data[i];
    		}		
@@ -28,28 +28,28 @@ public class MyHeap{
   	}
 
 	public void swap(int a, int b){
-		String feta = data[b];
+		int feta = data[b];
 		data[b] = data[a];
 		data[a] = feta;
         }
 
-	public void add(String s){
+	public void add(Int s){
         	if(size+1 == data.length) getBig();
       	 	size++;
  		data[size] = s;
   		pushUp(size);
 	}
 
-	public String remove(){
+	public int remove(){
 		if(size == 0) throw new NoSuchElementException();
-    		String x = data[1];
+    		int x = data[1];
     		data[1] = data[size];
     		size--;
     		pushDown(1);
-   		 return x;
+   		return x;
 	}
 
-	public String peek(){
+	public int peek(){
 		if(size == 0){
 			throw new NoSuchElementException();
 		}else{
@@ -57,11 +57,11 @@ public class MyHeap{
 		}
 	}
 
-	public boolean comp(String first, String sec){
+	public boolean comp(int first, int sec){
 		if(max >0){
 	    		return first.compareTo(sec) > 0;
 		}else{
-	   		 return sec.compareTo(first) > 0;
+	   		return sec.compareTo(first) > 0;
 		}
   	}
 
