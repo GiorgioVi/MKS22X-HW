@@ -1,98 +1,82 @@
-import java.util.*;
 import java.util.NoSuchElementException;
 
 public class MyHeap{
-   private String[] data = new String[10];
-   private int max = 1;
-   private int size;
+    private String[] array =  new String[10];
+    private int max = 1, size;
 
-	public MyHeap(){
-  		size = 0;
-	}
+    public MyHeap(){
+      size = 0;
+    }
 
-	public MyHeap(boolean beta){
- 		size = 0;
-		if(beta){
-			max = 1;
-		}else{
-			max = -1;
-		}
-	}
+    public MyHeap(boolean bool){
+       size = 0;
+       if(bool){
+         max = 1;
+       }else{
+         max = -1;
+       }
+    }
 
-	private void getBig(){
-		String[]big = new String[size*2];
-		for (int i =0;i <= size;i++ ) {
-        		big[i] = data[i];
-   		}		
-   		data = big;
-  	}
-
-	public void swap(int a, int b){
-		String feta = data[b];
-		data[b] = data[a];
-		data[a] = feta;
-        }
-
-	public void add(String s){
-        	if(size+1 == data.length) getBig();
-      	 	size++;
- 		data[size] = s;
-  		pushUp(size);
-	}
-
-	public String remove(){
-		if(size == 0) throw new NoSuchElementException();
-    		String x = data[1];
-    		data[1] = data[size];
-    		size--;
-    		pushDown(1);
-   		 return x;
-	}
-
-	public String peek(){
-		if(size == 0){
-			throw new NoSuchElementException();
-		}else{
-			return data[1];
-		}
-	}
-
-	public boolean comp(String first, String sec){
-		if(max >0){
-	    		return first.compareTo(sec) > 0;
-		}else{
-	   		 return sec.compareTo(first) > 0;
-		}
-  	}
-
-	private void pushUp(int k){
-  		if(k > 1 && comp(data[k],data[k/2])){
-     			swap(k, k/2);
-    			pushUp(k/2);
- 		}
-  	}
-
- 	private void pushDown(int k){
-		if(k*2+1 <= size){
-	    		if(comp(data[k*2], data[k*2+1])){
-		      		swap(k, k*2);
-		        	pushDown(k*2);
-	    		}else{
-		      		swap(k, k*2+1);
-		        	pushDown(k*2+1);
-	   		}
-		}else{
-	    		if(k * 2 <= size){
-		      		swap(k, k*2);
-	    		}
+    public void swap(int a, int b){
+      String swapper = array[b];
+      array[b] = array[a];
+      array[a] = swapper;
+    }
+    public String peek(){
+	     if(size == 0) throw new NoSuchElementException();
+	     return array[1];
+    }
+    private int comp(String a, String b){
+      return a.compareTo(b);
+    }
+    private void pushUp(int i){
+	     while(i != 1 && comp(array[i],array[i/2]) * max > 0){
+	     int dad = i/2;
+       swap(i,dad);
+	     i = dad;
+	    }
+    }
+    private void pushDown(int i){
+	    while(2 * i <= size){
+	       if(2 * i + 1 <= size && comp(array[2 * i + 1], array[2 * i]) * max > 0){
+		         if(comp(array[i], array[2 * i + 1]) * max < 0){
+		             int little = 2 * i + 1;
+		             swap(i,little);
+		             i = little;
+		         }else{ break; }
+	       }else{ if(comp(array[i], array[2 * i]) * max < 0){
+		              int kid = 2 * i;
+		              swap(i,kid);
+		              i = kid;
+		              }else{ break;}
 	             }
- 	}
-
-	public String toString(){
-		String x = "[";
-		for(int i = 1;i <= size;i++){
-	    		x+=data[i] + ", ";
-		}
-		return x + "]";
-    	}
+	   }
+  }
+  public void add(String s){
+     if(size+1 == array.length) getBig();
+     array[size+1] = s;
+     size++;
+     pushUp(size);
+  }
+  public String remove(){
+     if(size == 0) throw new NoSuchElementException();
+     String prev = array[1];
+     array[1] = array[size];
+     size--;
+     pushDown(1);
+     return prev;
+  }
+  public String toString(){
+	   return java.util.Arrays.toString(array);
+  }
+  private void getBig(){
+    String[] big = new String[size*2];
+    for(int i = 1; i <= size; i++){
+      big[i] = array[i];
+    }
+	   array = big;
+    }
+  public int size(){
+	   return size;
+  }
 }
