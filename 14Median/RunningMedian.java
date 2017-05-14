@@ -36,16 +36,4 @@ public class RunningMedian {
 	    min.add(moxxi.remove());
 	   }
    }
-   public static void main(String[] args) {
-	RunningMedian rm = new RunningMedian();
-	rm.add(1);
-	rm.add(2);
-	rm.add(3);
-	rm.add(4);
-        rm.add(5);
-	System.out.println(rm.getMedian());
-	rm.add(6);
-	System.out.println(rm.getMedian());
-    }
-
 }
