@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 
 public class MyHeap{
-    private String[] array =  new String[10];
+    private Location[] array =  new Location[10];
     private int max = 1, size;
 
     public MyHeap(){
@@ -18,15 +18,15 @@ public class MyHeap{
     }
 
     public void swap(int a, int b){
-      String swapper = array[b];
+      Location swapper = array[b];
       array[b] = array[a];
       array[a] = swapper;
     }
-    public String peek(){
+    public Location peek(){
 	     if(size == 0) throw new NoSuchElementException();
 	     return array[1];
     }
-    private int comp(String a, String b){
+    private int comp(Location a, Location b){
       return a.compareTo(b);
     }
     private void pushUp(int i){
@@ -36,8 +36,6 @@ public class MyHeap{
 	     i = dad;
 	    }
     }
-
-    //helped from MD
     private void pushDown(int i){
 	    while(2 * i <= size){
 	       if(2 * i + 1 <= size && comp(array[2 * i + 1], array[2 * i]) * max > 0){
@@ -54,15 +52,15 @@ public class MyHeap{
 	             }
 	   }
   }
-  public void add(String s){
+  public void add(Location s){
      if(size+1 == array.length) getBig();
      array[size+1] = s;
      size++;
      pushUp(size);
   }
-  public String remove(){
+  public Location remove(){
      if(size == 0) throw new NoSuchElementException();
-     String prev = array[1];
+     Location prev = array[1];
      array[1] = array[size];
      size--;
      pushDown(1);
@@ -72,7 +70,7 @@ public class MyHeap{
 	   return java.util.Arrays.toString(array);
   }
   private void getBig(){
-    String[] big = new String[size*2];
+    Location[] big = new Location[size*2];
     for(int i = 1; i <= size; i++){
       big[i] = array[i];
     }
