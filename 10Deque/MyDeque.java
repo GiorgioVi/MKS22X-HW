@@ -4,7 +4,9 @@ public class MyDeque{
   private String[] data;
   private int front, end, size;
 
+public MyDeque(){
 
+}
 public MyDeque(int x){
   data = new String[x];
   front = 1; end = 2;
@@ -35,7 +37,7 @@ public void getBig(){
 public void addFirst(String noot){
   if(noot == null) throw new NullPointerException();
 
-  if(isFull()) getBig();
+  if((end + 1) % size == front && !(data[front] == null)) getBig();
 
   if(0 == front) front = size;
 
@@ -46,7 +48,7 @@ public void addFirst(String noot){
 public void addLast(String noot){
   if(noot == null) throw new NullPointerException();
 
-  if(isFull()) getBig();
+  if((end + 1) % size == front && !(data[front] == null)) getBig();
 
   if(end == size - 1) end-=1;
 
@@ -55,19 +57,19 @@ public void addLast(String noot){
 }
 
 public String getFirst(){
-  if(isEmpty()) throw new NoSuchElementException();
+  if(data[front] == null) throw new NoSuchElementException();
 
   return data[front];
 }
 
 public String getLast(){
-  if(isEmpty()) throw new NoSuchElementException();
+  if(data[front] == null) throw new NoSuchElementException();
 
   return data[end];
 }
 
 public String removeFirst(){
-  if(isEmpty()) throw new NoSuchElementException();
+  if(data[front] == null) throw new NoSuchElementException();
   String removed = data[front];
   data[front] = null;
   front++;
@@ -77,7 +79,7 @@ public String removeFirst(){
 }
 
 public String removeLast(){
-  if(isEmpty()) throw new NoSuchElementException();
+  if(data[front] == null) throw new NoSuchElementException();
   String removed = data[end];
   data[end] = null;
   end--;
@@ -88,13 +90,6 @@ public String removeLast(){
 
 
 
-private boolean isEmpty(){
-  return data[front] == null;
-}
-
-private boolean isFull(){
-  return (end + 1) % size == front && !isEmpty();
-}
 public static void main(String[] args) {
   MyDeque pizza = new MyDeque(10);
   pizza.addFirst("noot");
@@ -105,8 +100,7 @@ public static void main(String[] args) {
   pizza.addFirst("shoe");
   pizza.addLast("ship");
 
-  System.out.println(pizza.isFull());
-  System.out.println(pizza.isEmpty());
+
   System.out.println(pizza.toString());
   System.out.println(pizza.getLast());
   System.out.println(pizza.getFirst());
