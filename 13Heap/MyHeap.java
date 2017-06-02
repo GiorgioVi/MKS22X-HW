@@ -29,6 +29,7 @@ public class MyHeap{
     private int comp(String a, String b){
       return a.compareTo(b);
     }
+	//learned pushup/down from md
     private void pushUp(int i){
 	     while(i != 1 && comp(array[i],array[i/2]) * max > 0){
 	     int dad = i/2;
