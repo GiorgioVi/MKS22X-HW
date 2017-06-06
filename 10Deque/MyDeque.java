@@ -5,17 +5,16 @@ public class MyDeque{
   private int front, end, size;
 
 public MyDeque(){
-
-}
-public MyDeque(int x){
-  data = new String[x];
-  front = 1; end = 2;
-  size = data.length;
+  data = new String[10];
+  size = 10;
+  front = 1;
+  end = 0;
 }
 
 public String toString(){
+  if(data[front] == null) return "[]";
   String x = "[" + data[front] + ", ";
-  for(int i = front + 1; i != end + 1; i++){
+  for(int i = front+1; i != end+1; i++){
     if(i == size) i = 0;
     x += data[i] + ", ";
   }
@@ -26,7 +25,7 @@ public void getBig(){
   String[] newDeq = new String [size * 2];
   for(int i = 0; i < size; i++){
     if(head == size) head = 0;
-    newDeq[i] = data[i];
+    newDeq[i] = data[head];
     head++;
   }
   data = newDeq;
@@ -50,9 +49,7 @@ public void addLast(String noot){
 
   if((end + 1) % size == front && !(data[front] == null)) getBig();
 
-  if(end == size - 1) end-=1;
-
-  end --;
+  end = (end+1)%size;
   data[end] = noot;
 }
 
@@ -83,7 +80,7 @@ public String removeLast(){
   String removed = data[end];
   data[end] = null;
   end--;
-  if(end == size - 1)  end -= 1;
+  if(end == -1)  end = size-1;
 
   return removed;
 }
@@ -91,8 +88,9 @@ public String removeLast(){
 
 
 public static void main(String[] args) {
-  MyDeque pizza = new MyDeque(10);
+  MyDeque pizza = new MyDeque();
   pizza.addFirst("noot");
+  System.out.println(pizza);
   pizza.addFirst("boo");
   pizza.addFirst("sho");
   pizza.addFirst("shop");
@@ -106,9 +104,6 @@ public static void main(String[] args) {
   System.out.println(pizza.getFirst());
   System.out.println(pizza.removeLast());
   System.out.println(pizza.removeFirst());
-    System.out.println(pizza.toString());
-
-
+  System.out.println(pizza.toString());
 }
-
 }
