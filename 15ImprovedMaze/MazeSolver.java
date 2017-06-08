@@ -62,6 +62,15 @@ public class MazeSolver{
     }
   }
 
+
+ public String toString(){
+   return maze.toString(); //maze instance variable is maze in this case
+ }
+
+ public String toString(int n){
+    return maze.toString(n); //maze instance variable is maze in this case
+ }
+
   public static void main(String[] args){
     MazeSolver g = new MazeSolver(args[0], true);
     g.solve(Integer.parseInt(args[1]));
